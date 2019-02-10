@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodeGym</title>
+</head>
+<body>
+<script>
+    function Remote(tivi) {
+        this.tivi = tivi;
+        this.changeNumberProgram = function (number) {
+            this.tivi.setNumberProgram(number);
+        };
+        this.changeNumberVolume= function () {
+            this.tivi.setNumberVolume(tivi.getNumberVolume()+1);
+        };
+        this.turnOnTivi = function () {
+            this.tivi.setStatus(true);
+        };
+        this.turnOffTivi = function () {
+            this.tivi.setStatus(false);
+        }
+    }
+    function TiVi() {
+        this.status;
+        this.numberProgram ;
+        this.numberVolume ;
+
+        this.setNumberProgram  = function (numberProgram) {
+            this.numberProgram = numberProgram;
+        };
+        this.getNumberProgram  = function () {
+           return this.numberProgram;
+        };
+        this.setNumberVolume  = function (numberVolume) {
+            this.numberVolume = numberVolume;
+        };
+        this.getNumberVolume  = function () {
+            return this.numberVolume;
+        };
+        this.setStatus = function (status) {
+            this.status = status;
+        };
+        this.getStatus = function () {
+            return this.status ;
+        };
+        this.Programing = function () {
+            document.write("Đây là kênh : "+ this.getNumberProgram() +"<BR>");
+        };
+    }
+
+
+    let tivi = new TiVi();
+    tivi.setNumberVolume(10);
+    let remote = new Remote(tivi);
+    remote.turnOnTivi();
+    if (tivi.getStatus()) {
+        document.write("Tivi đang bật! <br>");
+        document.write("Âm lượng hiện tại là : " + tivi.getNumberVolume() +"<Br>");
+        remote.changeNumberProgram(7);
+        document.write("Bạn vừa đổi sang kênh 7<Br>");
+        tivi.Programing();
+        remote.changeNumberProgram(3);
+        document.write("Bạn vừa đổi sang kênh 3<Br>");
+        tivi.Programing();
+        remote.changeNumberVolume();
+        document.write("Bạn vừa tăng âm lượng - ");
+        document.write("Âm lượng hiện tại là : " + tivi.getNumberVolume() +"<Br>");
+        remote.changeNumberVolume();
+        document.write("Bạn vừa tăng âm lượng - ");
+        document.write("Âm lượng hiện tại là : " + tivi.getNumberVolume() +"<Br>");
+        remote.turnOffTivi();
+        document.write("<br> --> Tivi đã tắt");
+    }
+
+</script>
+</body>
+</html>
